@@ -1,6 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
-
-
+import { useCallback, useEffect, useState } from "react";
 
 function App() {
   const [length, setLength] = useState(8);
@@ -8,34 +6,31 @@ function App() {
   const [includeChar, setIncludeChar] = useState(false);
   const [password, setPassword] = useState("");
 
-  const generatePassword = useCallback(()=> {
-      let pass = "";
-      let strVal = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  const generatePassword = useCallback(() => {
+    let pass = "";
+    let strVal = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-      //if number is included in the password
-      if(includeNumber) strVal += "0123456789";
+    //if number is included in the password
+    if (includeNumber) strVal += "0123456789";
 
-      //if specialChar is included in the password
-      if(includeChar) strVal += "@£$%^&*(){}[]"
+    //if specialChar is included in the password
+    if (includeChar) strVal += "@£$%^&*(){}[]";
 
-      //FOR Loop to generate password 
-      for(let i = 1; i < length; i++){
-        let char = Math.floor(Math.random() * strVal.length + 1);
-        pass += strVal.charAt(char);
-      }
-      setPassword(pass)
+    //FOR Loop to generate password
+    for (let i = 1; i < length; i++) {
+      let char = Math.floor(Math.random() * strVal.length + 1);
+      pass += strVal.charAt(char);
+    }
+    setPassword(pass);
+  }, [length, includeNumber, includeChar, setPassword]);
 
-  }, [length,includeNumber, includeChar, setPassword])
-
-
-  useEffect(()=> {
+  useEffect(() => {
     generatePassword();
-  }, [length,includeNumber, includeChar, setPassword])
-
+  }, [length, includeNumber, generatePassword, includeChar, setPassword]);
 
   return (
     <div className="w-full h-36 max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-gray-800 text-orange-500">
-      <h1 className='text-white text-center my-3'>Password generator</h1>
+      <h1 className="text-white text-center my-3">Password generator</h1>
       <div className="flex shadow rounded-lg overflow-hidden mb-4">
         <input
           type="text"
@@ -44,20 +39,19 @@ function App() {
           value={password}
           readOnly
         />
-        <button
-          className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
-        >copy</button>
-
+        <button className="outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0">
+          copy
+        </button>
       </div>
-      <div className='flex text-sm gap-x-2'>
-        <div className='flex items-center gap-x-1'>
+      <div className="flex text-sm gap-x-2">
+        <div className="flex items-center gap-x-1">
           <input
             type="range"
-            className='cursor-pointer'
+            className="cursor-pointer"
             min={8}
             max={100}
             value={length}
-            onChange={(e)=> setLength(e.target.value)}
+            onChange={(e) => setLength(e.target.value)}
           />
           <label>Length:{length}</label>
         </div>
@@ -66,8 +60,8 @@ function App() {
             type="checkbox"
             id="numberInput"
             value={includeNumber}
-            onChange={()=> {
-              setIncludeNumber((prev)=> !prev)
+            onChange={() => {
+              setIncludeNumber((prev) => !prev);
             }}
           />
           <label htmlFor="numberInput">Numbers</label>
@@ -77,16 +71,15 @@ function App() {
             type="checkbox"
             id="characterInput"
             value={includeChar}
-            onChange={()=> {
-              setIncludeChar((prevValue)=> !prevValue)
+            onChange={() => {
+              setIncludeChar((prevValue) => !prevValue);
             }}
           />
           <label htmlFor="characterInput">Characters</label>
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default App
+export default App;

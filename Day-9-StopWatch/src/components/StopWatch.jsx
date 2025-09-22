@@ -10,9 +10,9 @@ function StopWatch() {
 
   const [status, setStatus] = useState(null);
 
-  function myTimeFunc() {
-    setTime((prev) => {
-      let { milliSeconds, seconds, minutes, hour } = prev;
+  function myTimeUpdateFunc() {
+    setTime((prevTime) => {
+      let { milliSeconds, seconds, minutes, hour } = prevTime;
 
       milliSeconds++;
       if (milliSeconds === 100) {
@@ -27,14 +27,13 @@ function StopWatch() {
         minutes = 0;
         hour++;
       }
-
       return { milliSeconds, seconds, minutes, hour };
     });
   }
 
   function handleStart() {
     if (status === null) {
-      const setIntervalValue = setInterval(myTimeFunc, 10);
+      const setIntervalValue = setInterval(myTimeUpdateFunc, 10);
       setStatus(setIntervalValue);
     }
   }
@@ -51,14 +50,24 @@ function StopWatch() {
       clearInterval(status);
       setStatus(null);
     }
-    setTime({ milliSeconds: 0, seconds: 0, minutes: 0, hour: 0 });
+    setTime({
+      milliSeconds: 0,
+      seconds: 0,
+      minutes: 0,
+      hour: 0,
+    });
+  }
+
+  function fillZeros(unit) {
+    return unit < 10 ? `0${unit}` : unit;
   }
 
   return (
     <div className="mainContainer">
       <h1>Stop Watch</h1>
       <h2>
-        {`${time.hour} : ${time.minutes} : ${time.seconds} : ${time.milliSeconds}`}
+        {`${fillZeros(time.hour)} : ${fillZeros(time.minutes)} : 
+           ${fillZeros(time.seconds)}: ${fillZeros(time.milliSeconds)}`}
       </h2>
       <div className="divContainer">
         <button onClick={handleStart} className="btn green">

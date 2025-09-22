@@ -38,6 +38,12 @@ body {
   width: 150px;
   border-radius: 15px;
 }
+.btnCountdown {
+  padding: 10px;
+  background-color: red;
+  width: 40%;
+  border-radius: 15px;
+}
 .blue {
   background-color: blue;
 }

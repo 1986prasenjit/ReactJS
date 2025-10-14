@@ -1,16 +1,24 @@
+import { Route, Routes } from "react-router";
+import Layout from "./Layout";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Home from "./pages/Home/Home";
+import LoginForm from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
     <>
       <div className="w-full">
-        <h1 className="text-3xl text-center font-bold font-sans uppercase text-red-500 mb-4">
-          Form In React
-        </h1>
-        <div>
-          {/* <LoginForm /> */}
-          <Signup />
-        </div>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<LoginForm />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
+        </Routes>
       </div>
     </>
   );

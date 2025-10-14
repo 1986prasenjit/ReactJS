@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { Link } from "react-router";
+import { Link } from "react-router";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
@@ -12,6 +12,7 @@ export default function Signup() {
     e.preventDefault();
     console.log("Form Submited");
   }
+
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form className=" p-8 rounded-2xl shadow-2xl w-full max-w-sm">
@@ -53,11 +54,10 @@ export default function Signup() {
         </label>
         <Button type="some" onClickHandler={onClickHandler} children="SignUp" />
         <div>
-          already have an account, please{" "}
-          {/* <Link to="/" className="text-blue-500 font-bold m">
+          <span>already have an account, please </span>
+          <Link to="/" className="text-blue-500 font-bold m">
             Login
-          </Link>{" "} */}
-          from here
+          </Link>
         </div>
       </form>
     </div>

@@ -1,7 +1,8 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router";
 
 const Header = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto flex justify-between items-center px-4 py-3">
@@ -10,22 +11,51 @@ const Header = () => {
 
         {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
-          <Link to={"/home"} className="text-gray-700 hover:text-blue-600">
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-red-600 font-bold uppercase text-xl"
+                : "font-bold uppercase text-black text-xl"
+            }
+            to="/home"
+          >
             Home
-          </Link>
-          <Link to={"/about"} className="text-gray-700 hover:text-blue-600">
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-red-600 font-bold uppercase text-xl"
+                : "font-bold uppercase text-black text-xl"
+            }
+            to="/about"
+          >
             About
-          </Link>
-          <Link to={"/contact"} className="text-gray-700 hover:text-blue-600">
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "text-red-600 font-bold uppercase text-xl"
+                : "font-bold uppercase text-black text-xl"
+            }
+            to="/contact"
+          >
             Contact
-          </Link>
+          </NavLink>
         </nav>
 
-        <Link to="/signup">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-            Sign In
-          </button>
-        </Link>
+        {isAuthenticated ? (
+          <Link to="/login">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+              Login
+            </button>
+          </Link>
+        ) : (
+          <Link to="/signup">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+              Signup
+            </button>
+          </Link>
+        )}
 
         <div className="md:hidden">
           <button className="text-gray-700 focus:outline-none">

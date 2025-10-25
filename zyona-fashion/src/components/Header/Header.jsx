@@ -5,11 +5,11 @@ const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <>
-      <nav className="flex items-center justify-around sticky top-0 z-10">
+      <nav className="flex items-center justify-between py-4">
         {/*LEFT SIDE OF THE NAV */}
         <div className="flex items-center gap-1">
-          <img src={assets.webLogo2} alt="" className="w-16" />
-          <h1 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-red-700 uppercase">
+          {/* <img src={assets.webLogo2} alt="" className="w-16" /> */}
+          <h1 className="text-lg sm:text-2xl md:text-4xl font-semibold text-black uppercase font-serif tracking-widest">
             Zyona
           </h1>
         </div>

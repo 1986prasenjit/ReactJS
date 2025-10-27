@@ -7,12 +7,11 @@ const Header = () => {
     <>
       <nav className="flex items-center justify-between py-4">
         {/*LEFT SIDE OF THE NAV */}
-        <div className="flex items-center gap-1">
-          {/* <img src={assets.webLogo2} alt="" className="w-16" /> */}
+        <Link to="/" className="flex items-center gap-1">
           <h1 className="text-lg sm:text-2xl md:text-4xl font-semibold text-black uppercase font-serif tracking-widest">
             Zyona
           </h1>
-        </div>
+        </Link>
 
         {/*MIDDLE OF THE NAV */}
         <ul className="hidden sm:flex gap-5 items-center">
@@ -77,7 +76,7 @@ const Header = () => {
 
         {/*MOBILE MENU FOR SMALL SCREEN*/}
         <div
-          className={`absolute top-0 ring-0 basis-0 overflow-hidden bg-white transition-all ${
+          className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
             isVisible ? "w-full" : "w-0"
           }`}
         >

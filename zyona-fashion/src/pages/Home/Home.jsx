@@ -1,10 +1,11 @@
-import { Hero } from "../../components";
+import { Hero, LatestCollections } from "../../components";
 
 function Home() {
   return (
     <>
       <div>
         <Hero />
+        <LatestCollections />
       </div>
     </>
   );

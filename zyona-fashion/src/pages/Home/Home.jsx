@@ -1,4 +1,10 @@
-import { Hero, LatestCollections } from "../../components";
+import {
+  Hero,
+  LatestCollections,
+  BestSeller,
+  Policies,
+  NewsLetter,
+} from "../../components";
 
 function Home() {
   return (
@@ -6,6 +12,9 @@ function Home() {
       <div>
         <Hero />
         <LatestCollections />
+        <BestSeller />
+        <Policies />
+        <NewsLetter />
       </div>
     </>
   );

@@ -1,33 +1,34 @@
 import React, { useContext, useEffect, useState } from "react";
+import Title from "../Title/Title";
 import { ShopContext } from "../../context/ShopContext";
-import { Cards, Title } from "../../components";
+import Cards from "../Cards/Cards";
 
-const LatestCollections = () => {
+const BestSeller = () => {
   const { products } = useContext(ShopContext);
 
-  const [latestProducts, setLatestProducts] = useState([]);
+  const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    setLatestProducts(products.slice(0, 10));
+    const besProducts = products.filter((product) => product.bestseller);
+    setBestSeller(besProducts.slice(0, 5));
   }, []);
   return (
     <>
-      {/*LATEST COLLECTION */}
+      {/* Best Seller */}
       <div className="text-center py-8 text-3xl">
-        <Title textOne={"LATEST"} textTwo={"COLLECTIONS"} />
+        <Title textOne={"BEST"} textTwo={"SELLERS"} />
         <p className="text-gray-500 max-w-xl mx-auto mt-4 text-sm">
-          Discover the newest additions to our collection. From trendy apparel
-          to stylish accessories, find the perfect pieces to elevate your
-          wardrobe.
+          Discover our trending collection which will be the perfect pieces to
+          elevate your wardrobe.
         </p>
       </div>
 
       {/*Rendering Products */}
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 p-2 cardResponsive">
-        {latestProducts?.map((item, index) => (
+        {bestSeller?.map((item, index) => (
           <Cards
             key={index}
-            id={item._id}
+            id={item.id}
             image={item.image}
             name={item.name}
             price={item.price}
@@ -38,4 +39,4 @@ const LatestCollections = () => {
   );
 };
 
-export default LatestCollections;
+export default BestSeller;

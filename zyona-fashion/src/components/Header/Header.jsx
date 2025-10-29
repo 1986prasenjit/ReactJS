@@ -7,7 +7,8 @@ const Header = () => {
     <>
       <nav className="flex items-center justify-between py-4">
         {/*LEFT SIDE OF THE NAV */}
-        <Link to="/" className="flex items-center gap-1">
+        <Link to="/" className="flex items-center">
+          <img src={assets.webLogo2} className="w-20" alt="Company Logo" />
           <h1 className="text-lg sm:text-2xl md:text-4xl font-semibold text-black uppercase font-serif tracking-widest">
             Zyona
           </h1>

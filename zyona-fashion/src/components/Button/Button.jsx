@@ -8,7 +8,7 @@ const Button = ({ children, buttonType, type, onClickHandler }) => {
   };
 
   const baseStyles =
-    "px-4 py-2 sm:px-6 sm:py-4 sm:w-48 w-32 md:w-52 text-sm sm:text-md text-white rounded transition-colors duration-200";
+    "px-4 py-2 sm:px-6 sm:py-3 sm:w-48 w-32 md:w-52 text-sm sm:text-md lg:text-xl text-white rounded transition-colors duration-200";
 
   const finalClassName = `${baseStyles} ${
     buttonStyles[buttonType] || buttonStyles.primary

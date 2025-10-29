@@ -15,7 +15,7 @@ import Layout from "./Layout";
 function App() {
   return (
     <>
-      <div className="w-full max-w-[1380px] mx-auto p-2">
+      <div className="w-full max-w-[1480px] mx-auto p-2">
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

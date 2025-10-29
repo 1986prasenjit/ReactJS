@@ -21,7 +21,6 @@ a.active hr {
     grid-template-columns: repeat(2, 1fr);
   }
   a.active {
-    background-color: rgb(150, 19, 7);
-    color: #f1f1f1;
+    background-color: rgb(244, 241, 241);
   }
 }

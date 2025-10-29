@@ -24,16 +24,20 @@ const NewsLetter = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col sm:flex-row gap-3 w-full"
+        className="flex flex-col sm:flex-row w-full max-w-4xl"
       >
-        <Input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChangeHandler={handleEmailChange}
-          required
-        />
-        <Button children="Subscribe" type="submit" buttonType="danger" />
+        <div className="w-2/3">
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChangeHandler={handleEmailChange}
+            required
+          />
+        </div>
+        <div className="w-[25%]">
+          <Button children="Subscribe" type="submit" buttonType="danger" />
+        </div>
       </form>
     </div>
   );

@@ -1,8 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import { assets } from "../../assets/assets/frontend_assets/assets";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { SearchBar } from "../../components";
+import { ShopContext } from "../../context/ShopContext";
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
+
+  const { setShowSearch } = useContext(ShopContext);
   return (
     <>
       <nav className="flex items-center justify-between py-4">
@@ -44,7 +48,12 @@ const Header = () => {
 
         {/*RIGHT SIDE OF THE NAV */}
         <div className="flex items-center gap-6">
-          <img src={assets.search_icon} className="w-5 cursor-pointer" alt="" />
+          <img
+            onClick={() => setShowSearch(true)}
+            src={assets.search_icon}
+            className="w-5 cursor-pointer"
+            alt=""
+          />
 
           <div className="group relative">
             <img
@@ -124,6 +133,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      <SearchBar />
     </>
   );
 };

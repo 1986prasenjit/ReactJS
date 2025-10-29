@@ -1,7 +1,97 @@
+import { useContext, useEffect, useState } from "react";
+import { assets } from "../../assets/assets/frontend_assets/assets";
+import { Cards, Title } from "../../components";
+import { ShopContext } from "../../context/ShopContext";
+
 function Collections() {
+  //Context Provider
+  const { products } = useContext(ShopContext);
+
+  const [showFilter, setShowFilter] = useState(false);
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    setFilteredProducts(products);
+  }, []);
   return (
-    <div>Collections</div>
-  )
+    <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300">
+      <div className="max-w-60 w-52">
+        <p
+          onClick={() => setShowFilter((prev) => !prev)}
+          className="uppercase font-medium text-xl flex gap-2 items-center"
+        >
+          filters
+          <img
+            src={assets.dropdown_icon}
+            className={`h-3  sm:hidden ${showFilter ? "rotate-90" : ""}`}
+            alt="Dropdown Icon"
+          />
+        </p>
+        <div
+          className={`border-2 border-gray-300 p-4 mt-6 ${
+            showFilter ? "block" : "hidden"
+          } sm:block`}
+        >
+          <h3>CATIGORIES</h3>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Men"} /> Men
+          </p>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Women"} /> Women
+          </p>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Kids"} /> Kids
+          </p>
+        </div>
+        <div
+          className={`border-2 border-gray-300 p-4 mt-6 ${
+            showFilter ? "block" : "hidden"
+          } sm:block`}
+        >
+          <h3>TYPES</h3>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Winter-Wear"} /> Winter-Wear
+          </p>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Top-Wear"} /> Top-Wear
+          </p>
+          <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
+            <input type="checkbox" value={"Bottom-Wear"} /> Bottom-Wear
+          </p>
+        </div>
+      </div>
+
+      <div className="flex-1">
+        <div className="flex justify-between text-base sm:text-2xl mb-4">
+          <Title textOne={"ALL"} textTwo={"CATEGORIES"} />
+          <select className="border-none text-xs  sm:text-sm text-gray-600 outline-none">
+            <option className="" value="Relevent">
+              Sort by: Relevent
+            </option>
+            <option className="" value="Low-to-High">
+              Sort by: low-to-high
+            </option>
+            <option className="" value="High-to-Low">
+              Sort by: high-to-low
+            </option>
+          </select>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
+          {filteredProducts?.map((item, index) => (
+            <Cards
+              key={index}
+              name={item.name}
+              id={item._id}
+              price={item.price}
+              image={item.image}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Collections
+export default Collections;

@@ -11,9 +11,79 @@ function Collections() {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  const [category, setCategory] = useState([]);
+
+  const [subCategory, setSubCategory] = useState([]);
+
+  const [sortType, setSortType] = useState(["Relevent"]);
+
+  const toggleCategory = (e) => {
+    if (category.includes(e.target.value)) {
+      setCategory((prevCategory) =>
+        prevCategory.filter((item) => item !== e.target.value)
+      );
+    } else {
+      setCategory((prevCategory) => [...prevCategory, e.target.value]);
+    }
+  };
+
+  const toggleSubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setSubCategory((prevCategory) =>
+        prevCategory.filter((item) => item !== e.target.value)
+      );
+    } else {
+      setSubCategory((prevCategory) => [...prevCategory, e.target.value]);
+    }
+  };
+
+  const applyFilterToProducts = () => {
+    let productsCopy = products.slice();
+
+    if (category.length > 0) {
+      productsCopy = productsCopy.filter((item) =>
+        category.includes(item.category)
+      );
+    }
+
+    if (subCategory.length > 0) {
+      productsCopy = productsCopy.filter((item) =>
+        subCategory.includes(item.subCategory)
+      );
+    }
+    setFilteredProducts(productsCopy);
+  };
+
+  const sortProducts = () => {
+    let filterProductsCopy = filteredProducts.slice();
+
+    switch (sortType) {
+      case "Low-to-High":
+        setFilteredProducts(
+          filterProductsCopy.sort((a, b) => a.price - b.price)
+        );
+        break;
+
+      case "High-to-Low":
+        setFilteredProducts(
+          filterProductsCopy.sort((a, b) => b.price - a.price)
+        );
+        break;
+
+      default:
+        applyFilterToProducts();
+        break;
+    }
+  };
+
   useEffect(() => {
-    setFilteredProducts(products);
-  }, []);
+    applyFilterToProducts();
+  }, [category, subCategory]);
+
+  useEffect(() => {
+    sortProducts();
+  }, [sortType]);
+
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300">
       <div className="max-w-60 w-52">
@@ -35,13 +105,16 @@ function Collections() {
         >
           <h3>CATIGORIES</h3>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Men"} /> Men
+            <input type="checkbox" value={"Men"} onChange={toggleCategory} />{" "}
+            Men
           </p>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Women"} /> Women
+            <input type="checkbox" value={"Women"} onChange={toggleCategory} />{" "}
+            Women
           </p>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Kids"} /> Kids
+            <input type="checkbox" value={"Kids"} onChange={toggleCategory} />{" "}
+            Kids
           </p>
         </div>
         <div
@@ -51,13 +124,28 @@ function Collections() {
         >
           <h3>TYPES</h3>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Winter-Wear"} /> Winter-Wear
+            <input
+              type="checkbox"
+              value={"Winterwear"}
+              onChange={toggleSubCategory}
+            />{" "}
+            Winter-Wear
           </p>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Top-Wear"} /> Top-Wear
+            <input
+              type="checkbox"
+              value={"Topwear"}
+              onChange={toggleSubCategory}
+            />{" "}
+            Top-Wear
           </p>
           <p className="flex gap-2 text-sm mt-2 items-center text-gray-500">
-            <input type="checkbox" value={"Bottom-Wear"} /> Bottom-Wear
+            <input
+              type="checkbox"
+              value={"Bottomwear"}
+              onChange={toggleSubCategory}
+            />{" "}
+            Bottom-Wear
           </p>
         </div>
       </div>
@@ -65,15 +153,18 @@ function Collections() {
       <div className="flex-1">
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title textOne={"ALL"} textTwo={"CATEGORIES"} />
-          <select className="border-none text-xs  sm:text-sm text-gray-600 outline-none">
+          <select
+            onChange={(e) => setSortType(e.target.value)}
+            className="border-none text-xs  sm:text-sm text-gray-600 outline-none"
+          >
             <option className="" value="Relevent">
               Sort by: Relevent
             </option>
             <option className="" value="Low-to-High">
-              Sort by: low-to-high
+              Sort by: Low-to-High
             </option>
             <option className="" value="High-to-Low">
-              Sort by: high-to-low
+              Sort by: High-to-Low
             </option>
           </select>
         </div>

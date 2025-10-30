@@ -23,3 +23,5 @@ export { default as Button } from "./Button/Button";
 export { default as SearchBar } from "./SearchBar/SearchBar";
 
 export { default as RelatedProducts } from "./RelatedProducts/RelatedProducts";
+
+export { default as CartTotal } from "./CartTotal/CartTotal";

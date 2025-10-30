@@ -13,7 +13,7 @@ const Header = () => {
         {/*LEFT SIDE OF THE NAV */}
         <Link to="/" className="flex items-center">
           <img src={assets.webLogo2} className="w-20" alt="Company Logo" />
-          <h1 className="text-lg sm:text-2xl md:text-4xl font-semibold text-black uppercase font-serif tracking-widest">
+          <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-black uppercase tracking-widest">
             Zyona
           </h1>
         </Link>
@@ -21,25 +21,25 @@ const Header = () => {
         {/*MIDDLE OF THE NAV */}
         <ul className="hidden sm:flex gap-5 items-center">
           <NavLink to="/">
-            <p className="sm:text-xs lg:text-lg text-gray-700 uppercase font-semibold">
+            <p className="sm:text-xs lg:text-[15px] text-gray-700 uppercase font-semibold">
               Home
             </p>
             <hr className="hidden w-full border-none h-[2px] bg-red-500" />
           </NavLink>
           <NavLink to="/collections">
-            <p className="sm:text-xs lg:text-lg text-gray-700 uppercase font-semibold">
+            <p className="sm:text-xs lg:text-[15px] text-gray-700 uppercase font-semibold">
               Collections
             </p>
             <hr className="hidden w-full border-none h-[2px] bg-red-500" />
           </NavLink>
           <NavLink to="/about">
-            <p className="sm:text-xs lg:text-lg text-gray-700 uppercase font-semibold">
+            <p className="sm:text-xs lg:text-[15px] text-gray-700 uppercase font-semibold">
               About
             </p>
             <hr className="hidden w-full border-none h-[2px] bg-red-500" />
           </NavLink>
           <NavLink to="/contact">
-            <p className="sm:text-xs lg:text-lg text-gray-700 uppercase font-semibold">
+            <p className="sm:text-xs lg:text-[15px] text-gray-700 uppercase font-semibold">
               Contact
             </p>
             <hr className="hidden w-full border-none h-[2px] bg-red-500" />
@@ -51,13 +51,13 @@ const Header = () => {
           <img
             onClick={() => setShowSearch(true)}
             src={assets.search_icon}
-            className="w-5 cursor-pointer"
+            className="w-3 sm:w-5 cursor-pointer"
             alt=""
           />
 
           <div className="group relative">
             <img
-              className="w-5 cursor-pointer"
+              className="w-3 sm:w-5 cursor-pointer"
               src={assets.profile_icon}
               alt=""
             />
@@ -71,7 +71,11 @@ const Header = () => {
           </div>
 
           <Link to="/cart" className="relative">
-            <img src={assets.cart_icon} className="w-5 min-w-5" alt="" />
+            <img
+              src={assets.cart_icon}
+              className="w-3 sm:w-5 cursor-pointer"
+              alt=""
+            />
             <p className="absolute -bottom-2 -right-3 bg-red-500 text-white text-xs font-semibold px-1 rounded">
               {getCartCount()}
             </p>
@@ -79,7 +83,7 @@ const Header = () => {
           <img
             onClick={() => setIsVisible(true)}
             src={assets.menu_icon}
-            className="w-5 cursor-pointer sm:hidden"
+            className="w-3 cursor-pointer sm:hidden"
             alt="Mobile Menu Icon Image"
           />
         </div>

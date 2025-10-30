@@ -6,7 +6,7 @@ import { ShopContext } from "../../context/ShopContext";
 const Header = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch, getCartCount } = useContext(ShopContext);
   return (
     <>
       <nav className="flex items-center justify-between py-4">
@@ -73,7 +73,7 @@ const Header = () => {
           <Link to="/cart" className="relative">
             <img src={assets.cart_icon} className="w-5 min-w-5" alt="" />
             <p className="absolute -bottom-2 -right-3 bg-red-500 text-white text-xs font-semibold px-1 rounded">
-              10
+              {getCartCount()}
             </p>
           </Link>
           <img

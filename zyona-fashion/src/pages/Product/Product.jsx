@@ -9,7 +9,7 @@ import { assets } from "../../assets/assets/frontend_assets/assets";
 import { Cards, RelatedProducts, Title } from "../../components";
 
 function Product() {
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
 
   const { productId } = useParams();
 
@@ -112,7 +112,10 @@ function Product() {
                 </button>
               ))}
             </div>
-            <button className="bg-red-800 active:bg-red-950 px-4 py-2 sm:px-8 sm:py-3 rounded text-white mt-6 text-sm">
+            <button
+              onClick={() => addToCart(productData._id, size)}
+              className="bg-red-500 active:bg-red-800 px-4 py-2 sm:px-8 sm:py-3 rounded text-white mt-6 text-sm"
+            >
               ADD TO CART
             </button>
             <hr className="w-full border border-gray-200 mt-8" />

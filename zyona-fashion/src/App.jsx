@@ -1,4 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+
 import {
   About,
   Cart,
@@ -16,6 +19,7 @@ function App() {
   return (
     <>
       <div className="w-full max-w-[1480px] mx-auto p-2">
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

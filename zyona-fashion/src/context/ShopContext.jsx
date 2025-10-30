@@ -1,6 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import { products } from "../assets/assets/frontend_assets/assets";
+import { toast } from "react-toastify";
 
 export const ShopContext = createContext();
 
@@ -13,6 +14,61 @@ const ShopContextProvider = ({ children }) => {
 
   const [showSearch, setShowSearch] = useState(false);
 
+  const [cartItems, setCartItems] = useState({});
+
+  //function to add the items into the cart
+  const addToCart = async (itemId, size) => {
+    //if no size is selected will not allow to move further
+    if (!size) {
+      toast.error("Please select a size");
+      return;
+    }
+
+    //create a deep copy of the cart data
+    const cartData = structuredClone(cartItems);
+
+    //check if cartData with the particular itemId is present or not
+    if (cartData[itemId]) {
+      //if present then increase the count by ONE
+      if (cartData[itemId][size]) {
+        cartData[itemId][size] += 1;
+      }
+      //check if with the same itemId but with different size
+      else {
+        cartData[itemId][size] = 1;
+      }
+    }
+    //if not present then create one
+    else {
+      cartData[itemId] = {};
+      cartData[itemId][size] = 1;
+    }
+
+    //at last cart data to the useState variable
+    setCartItems(cartData);
+  };
+
+  const getCartCount = () => {
+    let totalCount = 0;
+
+    for (const items in cartItems) {
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            totalCount += cartItems[items][item];
+          }
+        } catch (error) {
+          toast.error("Failed to add items, please try after some time");
+        }
+      }
+    }
+    return totalCount;
+  };
+
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
+
   const value = {
     currency,
     delieveryFee,
@@ -21,6 +77,9 @@ const ShopContextProvider = ({ children }) => {
     setSearch,
     showSearch,
     setShowSearch,
+    addToCart,
+    cartItems,
+    getCartCount,
   };
 
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
